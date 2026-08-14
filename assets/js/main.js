@@ -45,12 +45,14 @@
   },6000);
 })();
 
-/* Nav scroll */
+/* Nav scroll (homepage only) */
 (function(){
+  if(location.pathname!=="/"&&location.pathname!=="")return;
   var links=document.querySelectorAll(".nav-links a"),ids=["news","profile","links","about"];
+  var map={news:"/",profile:"/#profile",links:"/#links",about:"/#about"};
   window.onscroll=function(){
     var c="";ids.forEach(function(id){var el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=200)c=id});
-    links.forEach(function(l){l.classList.toggle("on",l.getAttribute("href")==="#"+c)});
+    links.forEach(function(l){l.classList.toggle("on",l.getAttribute("href")===map[c])});
   };
 })();
 
